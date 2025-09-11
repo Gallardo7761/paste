@@ -1,0 +1,88 @@
+/* ================================
+   FUENTES PERSONALIZADAS
+================================== */
+@font-face {
+  font-family: "Open Sans";
+  src: url('/fonts/OpenSans.ttf');
+}
+
+@font-face {
+  font-family: "Product Sans";
+  src: url('/fonts/ProductSansRegular.ttf');
+}
+
+@font-face {
+  font-family: "Product Sans Italic";
+  src: url('/fonts/ProductSansItalic.ttf');
+}
+
+@font-face {
+  font-family: "Product Sans Italic Bold";
+  src: url('/fonts/ProductSansBoldItalic.ttf');
+}
+
+@font-face {
+  font-family: "Product Sans Bold";
+  src: url('/fonts/ProductSansBold.ttf');
+}
+
+/* ================================
+   PALETA DE COLORES
+================================== */
+
+:root {
+
+}
+
+/* Tema Claro */
+.light {
+
+}
+
+
+/* Tema Oscuro */
+.dark {
+  
+}
+
+/* ================================
+   ESTILOS BASE / RESET SUAVE
+================================== */
+html,
+body {
+  font-family: "Open Sans", sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  
+}
+
+body {
+  background-color: transparent !important; /* compatibilidad navbar fija */
+}
+
+main {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+/* Tipografía global */
+div,
+label,
+input,
+p,
+span,
+a,
+button {
+  font-family: "Open Sans", sans-serif;
+  color: var(--text-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Product Sans", sans-serif;
+  color: var(--text-color);
+}
