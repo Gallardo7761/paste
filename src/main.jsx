@@ -1,13 +1,30 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import '@/css/index.css'
+
+/* COMPONENTS */
 import App from '@/App.jsx'
 import { BrowserRouter } from 'react-router-dom'
+import { ThemeProvider } from '@/context/ThemeContext'
+import { AuthProvider } from '@/context/AuthContext'
+import { ConfigProvider } from '@/context/ConfigContext.jsx'
+
+/* CSS */
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import '@/css/index.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ConfigProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </AuthProvider>
+      </ThemeProvider>
+    </ConfigProvider>
   </StrictMode>
 )
