@@ -19,7 +19,6 @@ const PastePanel = ({ onSubmit }) => {
             title,
             content,
             syntax,
-            expires_at: expiresAt || null,
             burn_after: burnAfter,
             is_private: isPrivate,
             password: password || null,
@@ -28,31 +27,33 @@ const PastePanel = ({ onSubmit }) => {
     };
 
     return (
-        <Card className="paste-panel shadow-sm border-0 rounded-3">
-            <Card.Body>
-                <Form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
-                    <FloatingLabel
-                        controlId="contentInput"
-                        label={
-                            <>
-                                <FontAwesomeIcon icon={faAlignLeft} className="me-2" />
-                                Contenido
-                            </>
-                        }
-                    >
-                        <Form.Control
-                            as="textarea"
-                            rows={12}
-                            placeholder="Pega tu código aquí..."
-                            className="themed-input"
-                            value={content}
-                            onChange={(e) => setContent(e.target.value)}
-                            required
-                        />
-                    </FloatingLabel>
+        <div className="paste-panel border-0 m-2">
+            <Form onSubmit={handleSubmit}>
+                <Row className="g-3">
+                    <Col xs={12} lg={8}>
+                        <FloatingLabel
+                            controlId="contentInput"
+                            label={
+                                <>
+                                    <FontAwesomeIcon icon={faAlignLeft} className="me-2" />
+                                    Contenido
+                                </>
+                            }
+                        >
+                            <Form.Control
+                                as="textarea"
+                                rows={20}
+                                placeholder="Pega tu código aquí..."
+                                className="big-textarea"
+                                value={content}
+                                onChange={(e) => setContent(e.target.value)}
+                                required
+                            />
+                        </FloatingLabel>
+                    </Col>
 
-                    <Row className="g-3">
-                        <Col xs={12} md={6}>
+                    <Col xs={12} lg={4}>
+                        <div className="d-flex flex-column gap-3">
                             <FloatingLabel
                                 controlId="titleInput"
                                 label={
@@ -69,10 +70,9 @@ const PastePanel = ({ onSubmit }) => {
                                     onChange={(e) => setTitle(e.target.value)}
                                 />
                             </FloatingLabel>
-                        </Col>
-                        <Col xs={12} md={6}>
-                            <FloatingLabel 
-                                controlId="syntaxSelect" 
+
+                            <FloatingLabel
+                                controlId="syntaxSelect"
                                 label={
                                     <>
                                         <FontAwesomeIcon icon={faCode} className="me-2" />
@@ -115,11 +115,7 @@ const PastePanel = ({ onSubmit }) => {
                                     <option value="objectivec">Objective-C</option>
                                 </Form.Select>
                             </FloatingLabel>
-                        </Col>
-                    </Row>
 
-                    <Row className="g-3 d-flex align-items-center">
-                        <Col xs={12} md={1}>
                             <Form.Check
                                 type="switch"
                                 id="burnAfter"
@@ -128,8 +124,7 @@ const PastePanel = ({ onSubmit }) => {
                                 onChange={(e) => setBurnAfter(e.target.checked)}
                                 className="d-flex gap-2 align-items-center"
                             />
-                        </Col>
-                        <Col xs={12} md={1}>
+
                             <Form.Check
                                 type="switch"
                                 id="isPrivate"
@@ -138,23 +133,21 @@ const PastePanel = ({ onSubmit }) => {
                                 onChange={(e) => setIsPrivate(e.target.checked)}
                                 className="d-flex gap-2 align-items-center"
                             />
-                        </Col>
-                        <Col xs={12} md={6}>
+
                             {isPrivate && (
                                 <PasswordInput onChange={(e) => setPassword(e.target.value)} />
                             )}
-                        </Col>
-                        <Col xs={12} md={4}>
+
                             <div className="d-flex justify-content-end">
                                 <Button variant="primary" type="submit">
                                     Crear paste
                                 </Button>
                             </div>
-                        </Col>
-                    </Row>
-                </Form>
-            </Card.Body>
-        </Card>
+                        </div>
+                    </Col>
+                </Row>
+            </Form>
+        </div>
     );
 };
 

@@ -26,6 +26,11 @@
   src: url('/fonts/ProductSansBold.ttf');
 }
 
+@font-face {
+  font-family: "Fira Code";
+  src: url('/fonts/FiraCode.ttf');
+}
+
 /* ================================
    PALETA DE COLORES
 ================================== */
@@ -227,4 +232,16 @@ h5,
 h6 {
   font-family: "Product Sans", sans-serif;
   color: var(--text-color);
+}
+
+textarea.big-textarea.form-control {
+  resize: vertical;
+  min-height: 500px;
+  font-size: medium;
+  line-height: 1.4;
+  font-family: "Fira Code";
+}
+
+.custom-border {
+  border-bottom: 1px solid var(--border-color) !important;
 }

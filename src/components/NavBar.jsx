@@ -39,7 +39,7 @@ const NavBar = () => {
       sticky="top"
       expanded={expanded}
       onToggle={() => setExpanded(!expanded)}
-      className='shadow-sm'
+      className='shadow-none custom-border'
     >
       <Container fluid>
         {/* brand */}

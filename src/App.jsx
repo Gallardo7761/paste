@@ -10,7 +10,7 @@ import Home from '@/pages/Home.jsx'
 import Building from '@/pages/Building.jsx'
 
 function App() {
-  const routesWithFooter = ["/"];
+  const routesWithFooter = [];
 
   return (
     <>
