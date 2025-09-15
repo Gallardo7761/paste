@@ -130,10 +130,9 @@
 ================================== */
 
 .code-editor {
-  overflow: hidden;
-  height: 850px;
   border-radius: 0.75rem;
   background-color: var(--code-bg);
+  height: 850px;
 }
 
 /* ===============================
@@ -142,10 +141,5 @@
 
 .public-pastes {
   background-color: var(--card-bg);
-}
-
-.public-pastes .scrollable {
-  height: 750px;
-  overflow-y: auto;
-  scrollbar-width: none;
+  height: 850px;
 }

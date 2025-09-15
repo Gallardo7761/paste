@@ -45,7 +45,7 @@
   --primary-color: #333;
   --secondary-color: #555;
   --tertiary-color: #777;
-  --border-color: #ccc;
+  --border-color: #dee2e6;
   --divider-color: #ddd;
   --bg-color: #fff;
   --fg-color: #111;
@@ -55,7 +55,7 @@
   --bg-hover-color: #f0f0f0;
   --bg-search-bar: rgba(0,0,0,0.05);
   --input-bg: #fff;
-  --input-border: #ccc;
+  --input-border: var(--border-color);
   --placeholder-color: #999;
   --input-text: var(--text-color);
   --accent-color: #333;
@@ -67,7 +67,7 @@
   --highlight-border: #777;
   --card-bg: #fff;
   --card-button: #fff;
-  --card-border: #ccc;
+  --card-border: var(--border-color);
   --card-text: var(--text-color);
   --card-text-secondary: #555;
   --card-btn-hover: rgba(0,0,0,0.05);
@@ -101,13 +101,13 @@
   --list-hover-bg-light: #f5f5f5;
   --list-active-bg-light: #e0e0e0;
   --search-bg: rgba(255,255,255,0.6);
-  --search-border: #ccc;
+  --search-border: var(--border-color);
   --search-input-color: #111;
   --search-placeholder: #999;
   --toolbar-btn-color: #111;
   --toolbar-btn-hover: rgba(0,0,0,0.07);
   --modal-bg: #fff;
-  --modal-header-border: #ccc;
+  --modal-header-border: var(--border-color);
   --modal-body-bg: #fff;
   --modal-close-color: #111;
   --contact-info-bg: #f5f5f5;
@@ -121,7 +121,7 @@
   --primary-color: #eee;
   --secondary-color: #ccc;
   --tertiary-color: #999;
-  --border-color: #444;
+  --border-color: #adb5bd;
   --divider-color: #555;
   --bg-color: #111;
   --fg-color: #fff;
@@ -131,7 +131,7 @@
   --bg-hover-color: #1e1e1e;
   --bg-search-bar: rgba(255,255,255,0.05);
   --input-bg: #1e1e1e;
-  --input-border: #555;
+  --input-border: var(--border-color);
   --placeholder-color: #888;
   --input-text: #fff;
   --accent-color: #eee;
@@ -144,7 +144,7 @@
   --alert-bg: #500;
   --card-bg: #1e1e1e;
   --card-button: #1e1e1e;
-  --card-border: #555;
+  --card-border: var(--border-color);
   --card-text: #fff;
   --card-text-secondary: #ccc;
   --card-btn-hover: rgba(255,255,255,0.05);
@@ -178,13 +178,13 @@
   --list-hover-bg-dark: #333;
   --list-active-bg-dark: #444;
   --search-bg: rgba(255,255,255,0.1);
-  --search-border: #555;
+  --search-border: var(--border-color);
   --search-input-color: #fff;
   --search-placeholder: #888;
   --toolbar-btn-color: #fff;
   --toolbar-btn-hover: rgba(255,255,255,0.08);
   --modal-bg: #1e1e1e;
-  --modal-header-border: #555;
+  --modal-header-border: var(--border-color);
   --modal-body-bg: #1e1e1e;
   --modal-close-color: #fff;
   --contact-info-bg: #111;
@@ -204,7 +204,6 @@ body {
   background-color: var(--bg-color);
   
 }
-
 
 body {
   background-color: transparent !important; /* compatibilidad navbar fija */
@@ -235,12 +234,4 @@ h5,
 h6 {
   font-family: "Product Sans", sans-serif;
   color: var(--text-color);
-}
-
-.custom-border-bottom {
-  border-bottom: 1px solid var(--border-color) !important;
-}
-
-.custom-border {
-  border: 1px solid var(--border-color) !important;
 }
