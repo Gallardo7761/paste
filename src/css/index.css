@@ -114,6 +114,7 @@
   --balance-report-bg: #fff;
   --file-card-bg: #fff;
   --sidebar-bg: #eee;
+  --code-bg: #fffffe;
 }
 
 .dark {
@@ -127,9 +128,9 @@
   --text-color: #fff;
   --muted-color: #aaa;
   --shadow-color: rgba(0,0,0,0.5);
-  --bg-hover-color: #222;
+  --bg-hover-color: #1e1e1e;
   --bg-search-bar: rgba(255,255,255,0.05);
-  --input-bg: #222;
+  --input-bg: #1e1e1e;
   --input-border: #555;
   --placeholder-color: #888;
   --input-text: #fff;
@@ -141,13 +142,13 @@
   --icon-color: #fff;
   --highlight-border: #999;
   --alert-bg: #500;
-  --card-bg: #222;
-  --card-button: #222;
+  --card-bg: #1e1e1e;
+  --card-button: #1e1e1e;
   --card-border: #555;
   --card-text: #fff;
   --card-text-secondary: #ccc;
   --card-btn-hover: rgba(255,255,255,0.05);
-  --item-bg: #222;
+  --item-bg: #1e1e1e;
   --item-text: #fff;
   --subtitle-color: #aaa;
   --login-bg: #111;
@@ -161,9 +162,9 @@
   --navbar-brand-color: #eee;
   --navbar-brand-hover: #ccc;
   --navbar-link-color: #fff;
-  --navbar-link-hover-bg: #222;
+  --navbar-link-hover-bg: #1e1e1e;
   --navbar-link-hover-color: #ccc;
-  --navbar-dropdown-bg: #222;
+  --navbar-dropdown-bg: #1e1e1e;
   --navbar-dropdown-item-color: #fff;
   --navbar-dropdown-item-hover-color: #ccc;
   --navbar-divider-color: #555;
@@ -182,14 +183,15 @@
   --search-placeholder: #888;
   --toolbar-btn-color: #fff;
   --toolbar-btn-hover: rgba(255,255,255,0.08);
-  --modal-bg: #222;
+  --modal-bg: #1e1e1e;
   --modal-header-border: #555;
-  --modal-body-bg: #222;
+  --modal-body-bg: #1e1e1e;
   --modal-close-color: #fff;
   --contact-info-bg: #111;
-  --balance-report-bg: #222;
-  --file-card-bg: #222;
+  --balance-report-bg: #1e1e1e;
+  --file-card-bg: #1e1e1e;
   --sidebar-bg: #000;
+  --code-bg: #1e1e1e;
 }
 
 /* ================================
@@ -202,6 +204,7 @@ body {
   background-color: var(--bg-color);
   
 }
+
 
 body {
   background-color: transparent !important; /* compatibilidad navbar fija */
@@ -234,14 +237,10 @@ h6 {
   color: var(--text-color);
 }
 
-textarea.big-textarea.form-control {
-  resize: vertical;
-  min-height: 500px;
-  font-size: medium;
-  line-height: 1.4;
-  font-family: "Fira Code";
+.custom-border-bottom {
+  border-bottom: 1px solid var(--border-color) !important;
 }
 
 .custom-border {
-  border-bottom: 1px solid var(--border-color) !important;
+  border: 1px solid var(--border-color) !important;
 }

@@ -1,0 +1,51 @@
+import Editor from "@monaco-editor/react";
+import { useTheme } from "@/hooks/useTheme";
+import { useRef } from "react";
+import PropTypes from "prop-types";
+
+const CodeEditor = ({ className = "", syntax, readOnly, onChange }) => {
+    const { theme } = useTheme();
+    const editorRef = useRef(null);
+
+    const onMount = (editor) => {
+        editorRef.current = editor;
+        editor.focus();
+    }
+
+    return (
+        <div className={`code-editor ${className}`}>
+            <Editor
+                language={syntax || "plaintext"}
+                defaultValue=""
+                theme={theme === "dark" ? "vs-dark" : "vs-light"}
+                onChange={(value) => onChange?.(value)}
+                onMount={onMount}
+                options={{
+                    minimap: { enabled: false },
+                    automaticLayout: true,
+                    fontFamily: 'Fira Code',
+                    fontLigatures: true,
+                    fontSize: 16,
+                    lineHeight: 24,
+                    scrollbar: { verticalScrollbarSize: 0 },
+                    wordWrap: "on",
+                    formatOnPaste: true,
+                    suggest: {
+                        showFields: true,
+                        showFunctions: true,
+                    },
+                    readOnly: readOnly || false,
+                }}
+            />
+        </div>
+    );
+};
+
+CodeEditor.propTypes = {
+    className: PropTypes.string,
+    syntax: PropTypes.string,
+    readOnly: PropTypes.bool,
+    onChange: PropTypes.func,
+};
+
+export default CodeEditor;

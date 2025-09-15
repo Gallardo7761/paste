@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Card, Form, Button, Row, Col, FloatingLabel } from "react-bootstrap";
+import { Form, Button, Row, Col, FloatingLabel } from "react-bootstrap";
 import '@/css/PastePanel.css';
 import PasswordInput from "@/components/Auth/PasswordInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAlignLeft, faCode, faHeader } from "@fortawesome/free-solid-svg-icons";
+import { faCode, faHeader } from "@fortawesome/free-solid-svg-icons";
+import CodeEditor from "./CodeEditor";
 
 const PastePanel = ({ onSubmit }) => {
     const [title, setTitle] = useState("");
@@ -27,32 +28,76 @@ const PastePanel = ({ onSubmit }) => {
     };
 
     return (
-        <div className="paste-panel border-0 m-2">
+        <div className="paste-panel border-0">
             <Form onSubmit={handleSubmit}>
                 <Row className="g-3">
-                    <Col xs={12} lg={8}>
-                        <FloatingLabel
-                            controlId="contentInput"
-                            label={
-                                <>
-                                    <FontAwesomeIcon icon={faAlignLeft} className="me-2" />
-                                    Contenido
-                                </>
-                            }
-                        >
-                            <Form.Control
-                                as="textarea"
-                                rows={20}
-                                placeholder="Pega tu código aquí..."
-                                className="big-textarea"
-                                value={content}
-                                onChange={(e) => setContent(e.target.value)}
-                                required
-                            />
-                        </FloatingLabel>
+                    <Col xs={12} lg={2} className="order-last order-lg-1">
+                        <div className="public-pastes custom-border rounded-4 p-3">
+                            <h4>pastes públicas</h4>
+                            <hr />
+                            <div className="scrollable">
+                                <div>
+                                    <h6>paste #1</h6>
+                                    <p>Un ejemplo de paste pública.</p>
+                                </div>
+                                <div>
+                                    <h6>paste #2</h6>
+                                    <p>Otro ejemplo de paste pública.</p>
+                                </div>
+                                <div>
+                                    <h6>paste #3</h6>
+                                    <p>Un tercer ejemplo de paste pública.</p>
+                                </div>
+                                <div>
+                                    <h6>paste #1</h6>
+                                    <p>Un ejemplo de paste pública.</p>
+                                </div>
+                                <div>
+                                    <h6>paste #2</h6>
+                                    <p>Otro ejemplo de paste pública.</p>
+                                </div>
+                                <div>
+                                    <h6>paste #3</h6>
+                                    <p>Un tercer ejemplo de paste pública.</p>
+                                </div>
+                                <div>
+                                    <h6>paste #1</h6>
+                                    <p>Un ejemplo de paste pública.</p>
+                                </div>
+                                <div>
+                                    <h6>paste #2</h6>
+                                    <p>Otro ejemplo de paste pública.</p>
+                                </div>
+                                <div>
+                                    <h6>paste #3</h6>
+                                    <p>Un tercer ejemplo de paste pública.</p>
+                                </div>
+                                <div>
+                                    <h6>paste #1</h6>
+                                    <p>Un ejemplo de paste pública.</p>
+                                </div>
+                                <div>
+                                    <h6>paste #2</h6>
+                                    <p>Otro ejemplo de paste pública.</p>
+                                </div>
+                                <div>
+                                    <h6>paste #3</h6>
+                                    <p>Un tercer ejemplo de paste pública.</p>
+                                </div>
+                            </div>
+                        </div>
                     </Col>
 
-                    <Col xs={12} lg={4}>
+                    <Col xs={12} lg={7} className="order-lg-2">
+                        <CodeEditor
+                            className="custom-border rounded-4 pt-4 pe-4"
+                            syntax={syntax}
+                            readOnly={false}
+                            onChange={(value) => setContent(value)}
+                        />
+                    </Col>
+
+                    <Col xs={12} lg={3} className="order-lg-3"> 
                         <div className="d-flex flex-column gap-3">
                             <FloatingLabel
                                 controlId="titleInput"
@@ -122,7 +167,7 @@ const PastePanel = ({ onSubmit }) => {
                                 label="volátil"
                                 checked={burnAfter}
                                 onChange={(e) => setBurnAfter(e.target.checked)}
-                                className="d-flex gap-2 align-items-center"
+                                className="ms-1 d-flex gap-2 align-items-center"
                             />
 
                             <Form.Check
@@ -131,14 +176,14 @@ const PastePanel = ({ onSubmit }) => {
                                 label="privado"
                                 checked={isPrivate}
                                 onChange={(e) => setIsPrivate(e.target.checked)}
-                                className="d-flex gap-2 align-items-center"
+                                className="ms-1 d-flex gap-2 align-items-center"
                             />
 
                             {isPrivate && (
                                 <PasswordInput onChange={(e) => setPassword(e.target.value)} />
                             )}
 
-                            <div className="d-flex justify-content-end">
+                            <div className="d-flex justify-content-end mt-auto">
                                 <Button variant="primary" type="submit">
                                     Crear paste
                                 </Button>
