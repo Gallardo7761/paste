@@ -1,42 +1,22 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from "@/hooks/useAuth";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faSignIn,
-  faUser,
-  faSignOut,
-  faHouse,
-  faList,
-  faBullhorn,
-  faFile
-} from '@fortawesome/free-solid-svg-icons';
-
 import '@/css/NavBar.css';
-
 import ThemeButton from '@/components/ThemeButton.jsx';
-
-import IfAuthenticated from '@/components/Auth/IfAuthenticated.jsx';
-import IfNotAuthenticated from '@/components/Auth/IfNotAuthenticated.jsx';
-import IfRole from '@/components/Auth/IfRole.jsx';
-
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import AnimatedDropdown from '@/components/AnimatedDropdown.jsx';
-
-import { CONSTANTS } from '@/util/constants.js';
+import SearchToolbar from './SearchToolbar';
 
 const NavBar = () => {
-  const { user, logout } = useAuth();
-  const [showingUserDropdown, setShowingUserDropdown] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [isLg, setIsLg] = useState(window.innerWidth >= 992);
+  const [isXs, setIsXs] = useState(window.innerWidth < 576);
 
   useEffect(() => {
     const handleResize = () => {
       setIsLg(window.innerWidth >= 992 && window.innerWidth < 1200);
+      setIsXs(window.innerWidth < 576);
     };
-  
-    handleResize(); // inicializar
+
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -54,9 +34,35 @@ const NavBar = () => {
 
 
   return (
-    <Navbar expand="lg" sticky="top" expanded={expanded} onToggle={() => setExpanded(!expanded)}>
+    <Navbar
+      expand="lg"
+      sticky="top"
+      expanded={expanded}
+      onToggle={() => setExpanded(!expanded)}
+      className='shadow-sm'
+    >
       <Container fluid>
-        <Navbar.Toggle aria-controls="navbar" className="custom-toggler">
+        {/* brand */}
+        <Nav.Item
+          title="mpaste"
+          className={`navbar-brand`}
+        >
+          <div className="d-flex align-items-center gap-2">
+            <img src='/images/favicon.svg' width={44} height={44} />
+            <h3 className='m-0 p-0'>mpaste</h3>
+          </div>
+        </Nav.Item>
+
+        {/* ThemeButton SIEMPRE fijo */}
+        <div className="order-lg-2 ms-auto me-2">
+          <ThemeButton onlyIcon={isXs} />
+        </div>
+
+        {/* burger */}
+        <Navbar.Toggle
+          aria-controls="main-navbar"
+          className="custom-toggler border-0 order-lg-3"
+        >
           <svg width="30" height="30" viewBox="0 0 30 30">
             <path
               d="M4 7h22M4 15h22M4 23h22"
@@ -68,65 +74,21 @@ const NavBar = () => {
           </svg>
         </Navbar.Toggle>
 
-        <Navbar.Collapse id="main-navbar">
-          <Nav className="me-auto gap-2">
-            <Nav.Link
-              as={Link}
-              to="/"
-              title="Inicio"
-              href="/"
-              className={`text-truncate ${expanded ? "mt-3" : ""}`}
-              onClick={() => setExpanded(false)}
-            >
-              <FontAwesomeIcon icon={faHouse} className="me-2" />
-              Inicio
-            </Nav.Link>
-            
-            <div className="d-lg-none mt-2 ms-2">
-              <ThemeButton onlyIcon={isLg} />
+        {/* links y search que colapsan */}
+        <Navbar.Collapse id="main-navbar" className="order-lg-1">
+          <Nav
+            className={`me-auto gap-3 w-100 ${expanded ? "flex-column align-items-start mt-3 mb-2" : "d-flex align-items-center"}`}
+          >
+            <Nav.Link as={Link} to="/" onClick={() => setExpanded(false)}>inicio</Nav.Link>
+            <Nav.Link as={Link} to="/sugerencias" onClick={() => setExpanded(false)}>sugerencias</Nav.Link>
+            <div className="w-50">
+              <SearchToolbar />
             </div>
           </Nav>
         </Navbar.Collapse>
-
-        <div className="d-none d-lg-block me-3">
-          <ThemeButton onlyIcon={isLg} />
-        </div>
-
-        <Nav className="d-flex flex-md-row flex-column gap-2 ms-auto align-items-center">
-          <IfAuthenticated>
-            <AnimatedDropdown
-              className='end-0 position-absolute'
-              show={showingUserDropdown}
-              onMouseEnter={() => setShowingUserDropdown(true)}
-              onMouseLeave={() => setShowingUserDropdown(false)}
-              onToggle={(isOpen) => setShowingUserDropdown(isOpen)}
-              trigger={
-                <Link className="nav-link dropdown-toggle fw-bold">
-                  @{user?.user_name}
-                </Link>
-              }
-            >
-              <Link to="/perfil" className="text-muted dropdown-item nav-link">
-                <FontAwesomeIcon icon={faUser} className="me-2" />
-                Mi perfil
-              </Link>
-              <hr className="dropdown-divider" />
-              <Link to="#" className="dropdown-item nav-link" onClick={logout}>
-                <FontAwesomeIcon icon={faSignOut} className="me-2" />
-                Cerrar sesión
-              </Link>
-            </AnimatedDropdown>
-          </IfAuthenticated>
-
-          <IfNotAuthenticated>
-            <Nav.Link as={Link} to="/login" title="Iniciar sesión">
-              <FontAwesomeIcon icon={faSignIn} className="me-2" />
-              Iniciar sesión
-            </Nav.Link>
-          </IfNotAuthenticated>
-        </Nav>
       </Container>
     </Navbar>
+
   );
 };
 

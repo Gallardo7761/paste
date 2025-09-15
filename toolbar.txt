@@ -1,0 +1,21 @@
+<div className="toolbar-buttons">
+    {filtersComponent && (
+        <AnimatedDropdown variant="transparent" icon={<FontAwesomeIcon icon={faFilter} className='fa-md' />}>
+            {filtersComponent}
+        </AnimatedDropdown>
+    )}
+    {onPDF && (
+        <IfRole roles={[CONSTANTS.ROLE_ADMIN, CONSTANTS.ROLE_DEV]}>
+            <Button variant="transparent" onClick={onPDF}>
+                <FontAwesomeIcon icon={faFilePdf} className='fa-md' />
+            </Button>
+        </IfRole>
+    )}
+    {onCreate && (
+        <IfRole roles={[CONSTANTS.ROLE_ADMIN, CONSTANTS.ROLE_DEV]}>
+            <Button variant="transparent" onClick={onCreate}>
+                <FontAwesomeIcon icon={faPlus} className='fa-md' />
+            </Button>
+        </IfRole>
+    )}
+</div>

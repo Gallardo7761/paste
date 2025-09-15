@@ -22,7 +22,7 @@ const Footer = () => {
     <footer className="footer d-flex flex-column align-items-center gap-5 pt-5 px-4">
       <div className="footer-columns w-100" style={{ maxWidth: '900px' }}>
         <div className="footer-column">
-          <h4 className="footer-title">Contenido del footer</h4>
+          <h4 className="footer-title">Contacto</h4>
           <div className="contact-info p-4">
             <a
               href="https://github.com/Gallardo7761"
