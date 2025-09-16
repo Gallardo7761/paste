@@ -8,16 +8,16 @@ function App() {
   const routesWithFooter = [];
 
   return (
-    <>
+    <div className="d-flex flex-column vh-100">
       <NavBar />
-      <Routes>
-        <Route path="/" element={
-          <Home />
-        } />
-        <Route path="/*" element={<Building />} />
-      </Routes>
-      {routesWithFooter.includes(useLocation().pathname) ? <Footer /> : null}
-    </>
+      <div className="flex-fill overflow-auto">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/*" element={<Building />} />
+        </Routes>
+      </div>
+      {routesWithFooter.includes(useLocation().pathname) && <Footer />}
+    </div>
   )
 }
 

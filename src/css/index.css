@@ -2,6 +2,11 @@
    FUENTES PERSONALIZADAS
 ================================== */
 @font-face {
+  font-family: "Fira Code";
+  src: url('/fonts/FiraCode.ttf');
+}
+
+@font-face {
   font-family: "Open Sans";
   src: url('/fonts/OpenSans.ttf');
 }
@@ -24,11 +29,6 @@
 @font-face {
   font-family: "Product Sans Bold";
   src: url('/fonts/ProductSansBold.ttf');
-}
-
-@font-face {
-  font-family: "Fira Code";
-  src: url('/fonts/FiraCode.ttf');
 }
 
 /* ================================
@@ -121,7 +121,7 @@
   --primary-color: #eee;
   --secondary-color: #ccc;
   --tertiary-color: #999;
-  --border-color: #adb5bd;
+  --border-color: #555;
   --divider-color: #555;
   --bg-color: #111;
   --fg-color: #fff;
@@ -234,4 +234,24 @@ h5,
 h6 {
   font-family: "Product Sans", sans-serif;
   color: var(--text-color);
+}
+
+.custom-border {
+  border: 1px solid var(--border-color) !important;
+}
+
+.custom-border-top {
+  border-top: 1px solid var(--border-color) !important;
+}
+
+.custom-border-bottom {
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.custom-border-left {
+  border-left: 1px solid var(--border-color) !important;
+}
+
+.custom-border-right {
+  border-right: 1px solid var(--border-color) !important;
 }

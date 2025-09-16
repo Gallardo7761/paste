@@ -2,6 +2,13 @@ import Editor from "@monaco-editor/react";
 import { useTheme } from "@/hooks/useTheme";
 import { useRef } from "react";
 import PropTypes from "prop-types";
+import { loader } from '@monaco-editor/react';
+
+loader.config({
+    'vs/nls': {
+        availableLanguages: { '*': 'es' },
+    },
+});
 
 const CodeEditor = ({ className = "", syntax, readOnly, onChange }) => {
     const { theme } = useTheme();
@@ -25,8 +32,8 @@ const CodeEditor = ({ className = "", syntax, readOnly, onChange }) => {
                     automaticLayout: true,
                     fontFamily: 'Fira Code',
                     fontLigatures: true,
-                    fontSize: 16,
-                    lineHeight: 24,
+                    fontSize: 18,
+                    lineHeight: 1.5,
                     scrollbar: { verticalScrollbarSize: 0 },
                     wordWrap: "on",
                     formatOnPaste: true,

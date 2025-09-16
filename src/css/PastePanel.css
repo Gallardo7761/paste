@@ -132,14 +132,6 @@
 .code-editor {
   border-radius: 0.75rem;
   background-color: var(--code-bg);
-  height: 850px;
-}
-
-/* ===============================
-   PUBLIC PASTES LIST
-================================= */
-
-.public-pastes {
-  background-color: var(--card-bg);
-  height: 850px;
+  height: 100%;
+  min-height: 0;
 }
