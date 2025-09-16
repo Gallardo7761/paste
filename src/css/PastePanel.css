@@ -3,9 +3,6 @@
 ================================== */
 .paste-panel {
   background: var(--bg-color, rgba(255, 255, 255, 0.8));
-  backdrop-filter: blur(12px) saturate(150%);
-  border-radius: 1rem;
-  padding: 1rem;
   color: var(--card-text, #222);
 }
 
@@ -132,6 +129,4 @@
 .code-editor {
   border-radius: 0.75rem;
   background-color: var(--code-bg);
-  height: 100%;
-  min-height: 0; 
 }

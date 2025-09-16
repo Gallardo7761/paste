@@ -61,20 +61,20 @@ const PastePanel = ({ onSubmit, publicPastes }) => {
 	}, [paste_key]);
 
 	return (
-		<div className="paste-panel border-0">
-			<Form onSubmit={handleSubmit}>
-				<Row className="g-3 h-100">
-					<Col xs={12} lg={2} className="order-last order-lg-first d-flex flex-column">
-						<div className="public-pastes flex-fill overflow-auto">
+		<div className="paste-panel border-0 flex-fill d-flex flex-column min-h-0 p-3">
+			<Form onSubmit={handleSubmit} className="flex-fill d-flex flex-column min-h-0">
+				<Row className="g-3 flex-fill min-h-0">
+					<Col xs={12} lg={2} className="order-last order-lg-first d-flex flex-column flex-fill min-h-0 overflow-hidden">
+						<div className="public-pastes d-flex flex-column flex-fill overflow-hidden">
 							<h4>pastes públicas</h4>
 							<hr />
-							<div className="overflow-auto flex-fill" style={{ maxHeight: '80vh', scrollbarWidth: 'none' }}>
+							<div className="overflow-auto flex-fill" style={{ scrollbarWidth: 'none' }}>
 								{publicPastes && publicPastes.length > 0 ? (
 									publicPastes.map((paste) => (
-										<PublicPasteItem 
-											key={paste.paste_key} 
-											paste={paste} 
-											onSelect={handleSelectPaste} 
+										<PublicPasteItem
+											key={paste.paste_key}
+											paste={paste}
+											onSelect={handleSelectPaste}
 										/>
 									))
 								) : (
@@ -84,9 +84,9 @@ const PastePanel = ({ onSubmit, publicPastes }) => {
 						</div>
 					</Col>
 
-					<Col xs={12} lg={7} className="d-flex flex-column">
+					<Col xs={12} lg={7} className="d-flex flex-column flex-fill min-h-0 overflow-hidden">
 						<CodeEditor
-							className="h-100 custom-border rounded-4 overflow-hidden flex-fill pt-4 pe-4"
+							className="flex-fill custom-border rounded-4 overflow-hidden pt-4 pe-4"
 							syntax={syntax}
 							readOnly={!!selectedPaste}
 							onChange={selectedPaste ? undefined : setContent}
@@ -94,8 +94,8 @@ const PastePanel = ({ onSubmit, publicPastes }) => {
 						/>
 					</Col>
 
-					<Col xs={12} lg={3} className="d-flex flex-column">
-						<div className="d-flex flex-column h-100 gap-3">
+					<Col xs={12} lg={3} className="d-flex flex-column flex-fill min-h-0 overflow-hidden">
+						<div className="d-flex flex-column flex-fill gap-3 overflow-auto">
 							<FloatingLabel
 								controlId="titleInput"
 								label={
@@ -160,6 +160,7 @@ const PastePanel = ({ onSubmit, publicPastes }) => {
 
 							<Form.Check
 								type="switch"
+								disabled
 								id="burnAfter"
 								label="volátil"
 								checked={burnAfter}
@@ -169,6 +170,7 @@ const PastePanel = ({ onSubmit, publicPastes }) => {
 
 							<Form.Check
 								type="switch"
+								disabled
 								id="isPrivate"
 								label="privado"
 								checked={isPrivate}
@@ -191,6 +193,7 @@ const PastePanel = ({ onSubmit, publicPastes }) => {
 			</Form>
 		</div>
 	);
+
 };
 
 export default PastePanel;

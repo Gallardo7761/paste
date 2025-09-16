@@ -1,0 +1,20 @@
+<div className="footer-columns w-100" style={{ maxWidth: '900px' }}>
+        <div className="footer-column">
+          <h4 className="footer-title">Contacto</h4>
+          <div className="contact-info p-4">
+            <a
+              href="https://github.com/Gallardo7761"
+              target="_blank"
+              className='text-break d-block'
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon icon={faGithub} className="fa-icon me-2 " />
+              Gallardo7761
+            </a>
+            <a href="mailto:jose@miarma.net" className="text-break d-block">
+              <FontAwesomeIcon icon={faEnvelope} className="fa-icon me-2" />
+              jose@miarma.net
+            </a>
+          </div>
+        </div>
+      </div>

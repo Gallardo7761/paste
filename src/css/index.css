@@ -214,6 +214,12 @@ main {
   background-color: var(--bg-color);
 }
 
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 /* Tipografía global */
 div,
 label,
@@ -258,4 +264,8 @@ h6 {
 
 .custom-text-muted {
   color: var(--muted-color) !important;
+}
+
+div.fill {
+  height: calc(100% - 71px);
 }
