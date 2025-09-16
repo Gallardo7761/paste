@@ -44,20 +44,23 @@ export const useData = (config) => {
     }
   }, [config, fetchData]);
 
-  const getData = async (url, params = {}) => {
+  const getData = async (url, params = {}, headers = {}) => {
     try {
       const response = await axios.get(url, {
-        headers: getAuthHeaders(),
+        headers: { ...getAuthHeaders(), ...headers },
         params,
       });
       return { data: response.data.data, error: null };
     } catch (err) {
       return {
         data: null,
-        error: err.response?.data?.message || err.message,
+        error: {
+          status: err.response?.data?.status || err.response?.status,
+          message: err.response?.data?.message || err.message,
+        },
       };
     }
-  };  
+  };
 
   const postData = async (endpoint, payload) => {
     const headers = {
@@ -80,16 +83,16 @@ export const useData = (config) => {
     } catch (err) {
       const raw = err.response?.data?.message;
       let parsed = {};
-  
+
       try {
         parsed = JSON.parse(raw);
       } catch {
         return { data: null, errors: { general: raw || err.message } };
       }
-  
+
       return { data: null, errors: parsed };
     }
-  };  
+  };
 
   const putData = async (endpoint, payload) => {
     const response = await axios.put(endpoint, payload, {

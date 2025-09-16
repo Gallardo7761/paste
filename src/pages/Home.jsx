@@ -13,7 +13,6 @@ const Home = () => {
 
   const reqConfig = {
     baseUrl: `${config.apiConfig.baseUrl}${config.apiConfig.endpoints.pastes.all}`,
-    byKeyUrl: `${config.apiConfig.baseUrl}${config.apiConfig.endpoints.pastes.byKey}`,
     params: {
       _sort: 'created_at',
       _order: 'desc',

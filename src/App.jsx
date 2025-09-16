@@ -1,5 +1,4 @@
 import NavBar from '@/components/NavBar.jsx';
-import Footer from '@/components/Footer.jsx';
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from '@/pages/Home.jsx'
 import Building from '@/pages/Building.jsx'
@@ -12,7 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:paste_key" element={<Home />} />
-          <Route path="/*" element={<Building />} />
+          <Route path="/sugerencias" element={<Building />} />
         </Routes>
       </div>
     </>

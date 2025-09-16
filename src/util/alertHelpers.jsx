@@ -1,5 +1,5 @@
 export const renderErrorAlert = (error, options = {}) => {
-    const { className = 'alert alert-danger py-1 px-2 small', role = 'alert' } = options;
+    const { className = 'alert alert-danger alert-dismissible py-1 px-2 small', role = 'alert' } = options;
 
     if (!error) return null;
 
