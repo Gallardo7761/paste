@@ -10,7 +10,7 @@ loader.config({
     },
 });
 
-const CodeEditor = ({ className = "", syntax, readOnly, onChange }) => {
+const CodeEditor = ({ className = "", syntax, readOnly, onChange, value }) => {
     const { theme } = useTheme();
     const editorRef = useRef(null);
 
@@ -23,7 +23,7 @@ const CodeEditor = ({ className = "", syntax, readOnly, onChange }) => {
         <div className={`code-editor ${className}`}>
             <Editor
                 language={syntax || "plaintext"}
-                defaultValue=""
+                value={value || ""}
                 theme={theme === "dark" ? "vs-dark" : "vs-light"}
                 onChange={(value) => onChange?.(value)}
                 onMount={onMount}
@@ -53,6 +53,7 @@ CodeEditor.propTypes = {
     syntax: PropTypes.string,
     readOnly: PropTypes.bool,
     onChange: PropTypes.func,
+    value: PropTypes.string,
 };
 
 export default CodeEditor;

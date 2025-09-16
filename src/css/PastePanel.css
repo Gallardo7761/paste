@@ -133,5 +133,5 @@
   border-radius: 0.75rem;
   background-color: var(--code-bg);
   height: 100%;
-  min-height: 0;
+  min-height: 0; 
 }

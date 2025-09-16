@@ -255,3 +255,7 @@ h6 {
 .custom-border-right {
   border-right: 1px solid var(--border-color) !important;
 }
+
+.custom-text-muted {
+  color: var(--muted-color) !important;
+}

@@ -13,6 +13,7 @@ function App() {
       <div className="flex-fill overflow-auto">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/:paste_key" element={<Home />} />
           <Route path="/*" element={<Building />} />
         </Routes>
       </div>

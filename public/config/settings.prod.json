@@ -1,10 +1,11 @@
 {
   "apiConfig": {
-    "baseUrl": "http://localhost:3000",
+    "baseUrl": "https://api.miarma.net/mpaste",
     "endpoints": {
-      "auth": {
-        "login": "/auth/login",
-        "validateToken": "/auth/validate-token"
+      "pastes": {
+        "all": "/raw/v1/pastes",
+        "byId": "/raw/v1/pastes/:paste_id",
+        "byKey": "/v1/pastes/:paste_key"
       }
     }
   }

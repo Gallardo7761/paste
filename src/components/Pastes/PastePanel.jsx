@@ -1,18 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Button, Row, Col, FloatingLabel } from "react-bootstrap";
 import '@/css/PastePanel.css';
 import PasswordInput from "@/components/Auth/PasswordInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCode, faHeader } from "@fortawesome/free-solid-svg-icons";
 import CodeEditor from "./CodeEditor";
+import PublicPasteItem from "./PublicPasteItem";
+import { useParams, useNavigate } from "react-router-dom";
+import { useDataContext } from "@/hooks/useDataContext";
 
-const PastePanel = ({ onSubmit }) => {
+const PastePanel = ({ onSubmit, publicPastes }) => {
+	const { paste_key } = useParams();
+	const navigate = useNavigate();
+	const { getData } = useDataContext();
 	const [title, setTitle] = useState("");
 	const [content, setContent] = useState("");
 	const [syntax, setSyntax] = useState("");
 	const [burnAfter, setBurnAfter] = useState(false);
 	const [isPrivate, setIsPrivate] = useState(false);
 	const [password, setPassword] = useState("");
+	const [selectedPaste, setSelectedPaste] = useState(null);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -27,6 +34,32 @@ const PastePanel = ({ onSubmit }) => {
 		if (onSubmit) onSubmit(paste);
 	};
 
+	const handleSelectPaste = async (key) => {
+		navigate(`/${key}`);
+		await fetchPaste(key);
+	};
+
+	const fetchPaste = async (key) => {
+		try {
+			const url = `https://api.miarma.net/mpaste/v1/pastes/${key}`;
+			const { data, error } = await getData(url);
+			if (error) {
+				console.error(error);
+				return;
+			}
+			setSelectedPaste(data);
+			setTitle(data.title);
+			setSyntax(data.syntax || "plaintext");
+			setContent(data.content);
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
+	useEffect(() => {
+		if (paste_key) fetchPaste(paste_key);
+	}, [paste_key]);
+
 	return (
 		<div className="paste-panel border-0">
 			<Form onSubmit={handleSubmit}>
@@ -35,24 +68,30 @@ const PastePanel = ({ onSubmit }) => {
 						<div className="public-pastes flex-fill overflow-auto">
 							<h4>pastes públicas</h4>
 							<hr />
-							<div className="overflow-auto" style={{ maxHeight: '80vh', scrollbarWidth: 'none' }}>
-								{Array.from({ length: 20 }).map((_, index) => (
-									<div key={index} className="public-paste-item p-2 mb-2 rounded">
-										<h5 className="m-0">Título de la paste {index + 1}</h5>
-										<p className="m-0 text-truncate">Descripción breve o contenido de la paste {index + 1}</p>
-									</div>
-								))}
+							<div className="overflow-auto flex-fill" style={{ maxHeight: '80vh', scrollbarWidth: 'none' }}>
+								{publicPastes && publicPastes.length > 0 ? (
+									publicPastes.map((paste) => (
+										<PublicPasteItem 
+											key={paste.paste_key} 
+											paste={paste} 
+											onSelect={handleSelectPaste} 
+										/>
+									))
+								) : (
+									<p>No hay pastes públicas disponibles.</p>
+								)}
 							</div>
 						</div>
 					</Col>
 
 					<Col xs={12} lg={7} className="d-flex flex-column">
 						<CodeEditor
-								className="h-100 custom-border rounded-4 overflow-hidden flex-fill pt-4 pe-4"
-								syntax={syntax}
-								readOnly={false}
-								onChange={(value) => setContent(value)}
-							/>
+							className="h-100 custom-border rounded-4 overflow-hidden flex-fill pt-4 pe-4"
+							syntax={syntax}
+							readOnly={!!selectedPaste}
+							onChange={selectedPaste ? undefined : setContent}
+							value={content}
+						/>
 					</Col>
 
 					<Col xs={12} lg={3} className="d-flex flex-column">
