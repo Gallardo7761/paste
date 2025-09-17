@@ -1,7 +1,6 @@
 import NavBar from '@/components/NavBar.jsx';
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from '@/pages/Home.jsx'
-import Building from '@/pages/Building.jsx'
 
 function App() {
   return (
@@ -11,7 +10,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:paste_key" element={<Home />} />
-          <Route path="/sugerencias" element={<Building />} />
         </Routes>
       </div>
     </>

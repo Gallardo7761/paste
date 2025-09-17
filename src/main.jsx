@@ -14,6 +14,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import '@/css/index.css'
+import { SearchProvider } from './context/SearchContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -21,7 +22,9 @@ createRoot(document.getElementById('root')).render(
       <ThemeProvider>
         <AuthProvider>
           <BrowserRouter>
-            <App />
+            <SearchProvider>
+              <App />
+            </SearchProvider>
           </BrowserRouter>
         </AuthProvider>
       </ThemeProvider>

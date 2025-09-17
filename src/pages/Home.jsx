@@ -6,6 +6,7 @@ import { useDataContext } from '@/hooks/useDataContext';
 import { useState } from 'react';
 import { DataProvider } from '@/context/DataContext';
 import NotificationModal from '@/components/NotificationModal';
+import { useSearch } from "@/context/SearchContext";
 
 const Home = () => {
   const { config, configLoading } = useConfig();
@@ -31,9 +32,15 @@ const HomeContent = ({ reqConfig }) => {
   const { data, dataLoading, dataError, postData } = useDataContext();
   const [error, setError] = useState(null);
   const [key, setKey] = useState(null);
+  const { searchTerm } = useSearch();
 
   if (dataLoading) return <p><LoadingIcon /></p>;
   if (dataError) return <p>Error loading data</p>;
+
+  const filtered = data.filter(paste =>
+    paste.title.toLowerCase().includes((searchTerm ?? "").toLowerCase()) ||
+    paste.content.toLowerCase().includes((searchTerm ?? "").toLowerCase())
+  );
 
   const handleSubmit = async (paste) => {
     try {
@@ -48,14 +55,14 @@ const HomeContent = ({ reqConfig }) => {
 
   return (
     <>
-      <PastePanel onSubmit={handleSubmit} publicPastes={data} />
+      <PastePanel onSubmit={handleSubmit} publicPastes={filtered} />
       <NotificationModal
         show={key !== null}
         onClose={() => setKey(null)}
         title="Link a tu paste privado"
         message={
           <span>
-            Tu paste privado ha sido creado. Puedes acceder a él mediante el siguiente enlace: 
+            Tu paste privado ha sido creado. Puedes acceder a él mediante el siguiente enlace:
             <br /><br />
             <a href={`https://paste.miarma.net/${key}`}>https://paste.miarma.net/${key}</a>
             <br /><br />
