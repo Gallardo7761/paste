@@ -5,6 +5,7 @@ import LoadingIcon from '@/components/LoadingIcon';
 import { useDataContext } from '@/hooks/useDataContext';
 import { useState } from 'react';
 import { DataProvider } from '@/context/DataContext';
+import NotificationModal from '@/components/NotificationModal';
 
 const Home = () => {
   const { config, configLoading } = useConfig();
@@ -29,20 +30,44 @@ const Home = () => {
 const HomeContent = ({ reqConfig }) => {
   const { data, dataLoading, dataError, postData } = useDataContext();
   const [error, setError] = useState(null);
+  const [key, setKey] = useState(null);
 
   if (dataLoading) return <p><LoadingIcon /></p>;
   if (dataError) return <p>Error loading data</p>;
 
   const handleSubmit = async (paste) => {
     try {
-      await postData(reqConfig.baseUrl, paste);
+      const createdPaste = await postData(reqConfig.baseUrl, paste);
+      if (createdPaste && createdPaste.is_private) {
+        setKey(createdPaste.paste_key);
+      }
     } catch (error) {
       setError(error);
     }
   };
 
   return (
-    <PastePanel onSubmit={handleSubmit} publicPastes={data} />
+    <>
+      <PastePanel onSubmit={handleSubmit} publicPastes={data} />
+      <NotificationModal
+        show={key !== null}
+        onClose={() => setKey(null)}
+        title="Link a tu paste privado"
+        message={
+          <span>
+            Tu paste privado ha sido creado. Puedes acceder a él mediante el siguiente enlace: 
+            <br /><br />
+            <a href={`https://paste.miarma.net/${key}`}>https://paste.miarma.net/${key}</a>
+            <br /><br />
+            Recuerda que este enlace es único y no se puede recuperar si se pierde.
+          </span>
+        }
+        variant=""
+        buttons={[
+          { label: "Cerrar", variant: "secondary", onClick: () => setKey(null) }
+        ]}
+      />
+    </>
   );
 }
 

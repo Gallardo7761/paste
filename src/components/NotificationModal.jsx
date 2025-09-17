@@ -7,6 +7,7 @@ import {
   faCircleExclamation,
   faCircleInfo
 } from '@fortawesome/free-solid-svg-icons';
+import '@/css/NotificationModal.css';
 
 const iconMap = {
   success: faCircleCheck,
@@ -25,7 +26,7 @@ const NotificationModal = ({
 }) => {
   return (
     <Modal show={show} onHide={onClose} centered>
-      <Modal.Header closeButton className={`bg-${variant} ${variant === 'info' ? 'text-dark' : 'text-white'}`}>
+      <Modal.Header className={`bg-${variant} ${variant === 'info' ? 'text-dark' : 'text-white'}`}>
         <Modal.Title>
           <FontAwesomeIcon icon={iconMap[variant] || faCircleInfo} className="me-2" />
           {title}
