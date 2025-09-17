@@ -104,7 +104,7 @@ const NavBar = () => {
         message={
           <span>
             Si tienes alguna pregunta o sugerencia, me puedes escribir a mi correo: <br />
-            jose [arroba] miarma.net
+            <strong>jose [arroba] miarma.net</strong>
           </span>
         }
         variant=""

@@ -26,7 +26,7 @@ const NotificationModal = ({
 }) => {
   return (
     <Modal show={show} onHide={onClose} centered>
-      <Modal.Header className={`bg-${variant} ${variant === 'info' ? 'text-dark' : 'text-white'}`}>
+      <Modal.Header>
         <Modal.Title>
           <FontAwesomeIcon icon={iconMap[variant] || faCircleInfo} className="me-2" />
           {title}
